@@ -18,7 +18,7 @@ import os
 
 from unittest import TestCase
 
-from .cli import CLI
+from cli import CLI
 
 class TestCommand(TestCase):
     TEST_FIXTURES_ROOT_PATH = os.path.join(os.path.dirname(__file__), "../tests")

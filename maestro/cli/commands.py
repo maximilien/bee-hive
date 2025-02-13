@@ -12,14 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import os, yaml, json, jsonschema
+import os, yaml, json, jsonschema, traceback
 
 from openai import OpenAI
+from jsonschema.exceptions import ValidationError, SchemaError
+
 from src.workflow import Workflow
-
-from jsonschema.exceptions import ValidationError
-
-from .common import Console, parse_yaml
+from cli.common import Console, parse_yaml
 
 # Base class for all commands
 class Command:
@@ -99,6 +98,11 @@ class Validate(Command):
                     Console.ok("YAML file is valid.")
                 except ValidationError as ve:
                     Console.error("YAML file is NOT valid:\n {error_message}".format(error_message=str(ve.message)))
+                    if self.verbose():
+                        print(traceback.format_exc())
+                    return 1
+                except SchemaError as se:
+                    Console.error("Schema file is NOT valid:\n {error_message}".format(error_message=str(se.message)))
                     return 1
         return 0
 

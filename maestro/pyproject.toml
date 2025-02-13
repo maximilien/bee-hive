@@ -8,8 +8,6 @@ readme = "README.md"
 packages = [
     {include = "src", from="."},
     {include = "cli", from="."},
-    #{ include = "activity_planner", from = "demos/agents/crewai" }
-    # TODO - Packaging demos allows them to be run after a pip install
 ]
 
 [tool.poetry.dependencies]
@@ -19,7 +17,6 @@ pyyaml = "^6.0.2"
 python-dotenv = "^1.0.1"
 jsonschema = "^4.23.0"
 docopt-ng = "^0.9.0"
-# TODO Required by demos -- can split up, but then extra steps to install. See https://github.com/i-am-bee/bee-hive/issues/188
 langchain-community = "^0.3.16"
 duckduckgo-search = "^7.3.0"
 crewai = "^0.100.1"
@@ -41,4 +38,3 @@ addopts = "-v -s --ignore=framework"
 
 [tool.poetry.scripts]
 "maestro" = "cli.maestro:__run_cli"
-# TODO Add scripts to run demos here
